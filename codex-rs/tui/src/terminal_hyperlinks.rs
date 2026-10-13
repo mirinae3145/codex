@@ -608,7 +608,7 @@ fn trailing_url_end(candidate: &str) -> usize {
 pub(crate) fn web_destination(destination: &str) -> Option<String> {
     let safe_destination = sanitized_destination(destination)?;
     let parsed = Url::parse(&safe_destination).ok()?;
-    matches!(parsed.scheme(), "http" | "https")
+    matches!(parsed.scheme(), "http" | "https" | "zotero" | "obsidian" | "vscode")
         .then(|| parsed.host_str())
         .flatten()?;
     Some(safe_destination)
